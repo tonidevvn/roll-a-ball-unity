@@ -10,12 +10,14 @@ public class PlayerController : MonoBehaviour
     private float movementY;
     public float speed = 0;
     public TextMeshProUGUI countText;
+    public TextMeshProUGUI winText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         count = 0;
+        winText.gameObject.SetActive(false);
         SetCountText();
     }
 
@@ -44,6 +46,11 @@ public class PlayerController : MonoBehaviour
             count = count + 1;
             other.gameObject.SetActive(false);
             SetCountText();
+
+            if (count == 10)
+            {
+                winText.gameObject.SetActive(true);
+            }
         }
     }
 }
